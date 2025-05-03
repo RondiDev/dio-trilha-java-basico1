@@ -1,0 +1,77 @@
+https://github.com/RondiDev/dio-trilha-java-basico.git
+
+simulando uma conta Bancaria Atraves Do Terminal /Console
+
+
+1 Crie o projeto ContaBanco que receberá dados via terminal contendo as características de conta em banco conforme atributos abaixo:
+
+2 Dentro do projeto, crie a classe ContaTerminal.java para realizar toda a codificação do nosso programa.
+
+Atributo	Tipo	  Exemplo
+Numero	        Inteiro	  1021
+Agencia	        Texto	  067-8
+Nome Cliente	Texto	  MARIO ANDRADE
+Saldo	        Decimal	  237.48
+
+2 Permita que os dados sejam inseridos via terminal sendo que o usuário receberá a mensagem de qual informação será solicitada, exemplo:
+
+Programa: "Por favor, digite o número da Agência !"
+Usuário: 1021 (depois ENTER para o próximo campo)
+
+3 Depois de todas as informações terem sido inseridas, o sistema deverá exibir a seguinte mensagem:
+
+"Olá [Nome Cliente], obrigado por criar uma conta em nosso banco, sua agência é [Agencia], conta [Numero] e seu saldo [Saldo] já está disponível para saque".
+
+Os campos em [ ] devem ser alterados pelas informações que forem inseridas pelos usuários.
+
+Aqui está o código completo que você pode colocar dentro do seu arquivo 
+ContaTerminal.java:
+
+
+import java.util.Scanner;
+
+public class ContaTerminal {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Por favor, digite o número da Agência !");
+        String agencia = scanner.nextLine();
+
+        System.out.println("Por favor, digite o número da Conta !");
+        int numero = scanner.nextInt();
+        scanner.nextLine(); // Consome a quebra de linha deixada pelo nextInt()
+
+        System.out.println("Por favor, digite o nome do Cliente !");
+        String nomeCliente = scanner.nextLine();
+
+        System.out.println("Por favor, digite o saldo da Conta !");
+        double saldo = scanner.nextDouble();
+
+        System.out.println("Olá " + nomeCliente + ", obrigado por criar uma conta em nosso banco, sua agência é " + agencia + ", conta " + numero + " e seu saldo " + String.format("%.2f", saldo) + " já está disponível para saque.");
+
+        scanner.close();
+    }
+}
+
+
+
+Como este código funciona:
+
+import java.util.Scanner;: Esta linha importa a classe Scanner, que nos permite ler a entrada do usuário pelo terminal.
+Scanner scanner = new Scanner(System.in);: Criamos um objeto Scanner chamado scanner que lê a entrada do sistema (System.in).
+System.out.println(...): Usamos este comando para exibir mensagens para o usuário no terminal, solicitando as informações da conta.
+String agencia = scanner.nextLine();: Lemos a entrada do usuário para a agência como uma String.
+int numero = scanner.nextInt();: Lemos a entrada para o número da conta como um int.
+scanner.nextLine();: Esta linha é importante! Quando você usa nextInt() (ou nextDouble(), etc.), ele lê apenas o número e deixa a tecla "Enter" pressionada no buffer de entrada. A próxima vez que você tenta ler uma linha com nextLine(), ele lê essa "Enter" vazia. Adicionar um scanner.nextLine() extra após um nextInt() consome essa quebra de linha pendente.
+String nomeCliente = scanner.nextLine();: Lemos o nome do cliente como uma String.
+double saldo = scanner.nextDouble();: Lemos o saldo da conta como um double (para permitir valores decimais).
+System.out.println(...): Finalmente, construímos e exibimos a mensagem de confirmação, usando as informações que o usuário digitou.
+String.format("%.2f", saldo): Formatamos o saldo para exibir apenas duas casas decimais.
+scanner.close();: É uma boa prática fechar o Scanner quando não o precisamos mais para liberar recursos do sistema.
+Para executar este código:
+
+Salve o código em um arquivo chamado ContaTerminal.java dentro da pasta do seu projeto ContaBanco.
+Abra um terminal ou prompt de comando, navegue até a pasta do seu projeto (ContaBanco).
+Compile o código Java usando o comando: javac ContaTerminal.java
+Execute o programa compilado com o comando: java ContaTerminal
+O programa então solicitará que você digite as informações da conta no terminal. Depois de inserir todos os dados, ele exibirá a mensagem final formatada.
